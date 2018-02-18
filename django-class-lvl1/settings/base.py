@@ -21,20 +21,20 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles'
-)
+]
 
-PROJECT_APPS = ()
+PROJECT_APPS = []
 
 INSTALLED_APPS += PROJECT_APPS
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -42,7 +42,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 ROOT_URLCONF = 'django-class-lvl1.urls'
 
@@ -57,8 +57,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django-class-lvl1',
         'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',        # '127.0.0.1' for localhost through TCP.
+        'PASSWORD': '098-098',
+        'HOST': '127.0.0.1',        # '127.0.0.1' for localhost through TCP.
         'PORT': '',        # Set to empty string for default.
     }
 }
@@ -109,6 +109,6 @@ if len(sys.argv) > 1 and 'test' in sys.argv[1]:
 
 # Debug toolbar
 if DEBUG:
-    MIDDLEWARE_CLASSES += ()
-    INSTALLED_APPS += ("debug_toolbar",
-                       "django_coverage")
+    MIDDLEWARE_CLASSES += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+    INSTALLED_APPS += ["debug_toolbar",
+                       "django_coverage"]
