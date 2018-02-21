@@ -1,5 +1,9 @@
 import sys
+import os
 from os.path import join, abspath, dirname
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # PATH vars
 
@@ -15,7 +19,7 @@ SECRET_KEY = 'CHANGE THIS!!!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+# TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -46,6 +50,26 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'django-class-lvl1.urls'
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'debug': DEBUG,
+            # 'DEBUG': DEBUG,
+            # 'TEMPLATE_DEBUG': DEBUG
+        },
+    },
+]
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'django-class-lvl1.wsgi.application'
 
@@ -58,7 +82,7 @@ DATABASES = {
         'NAME': 'django-class-lvl1',
         'USER': 'postgres',
         'PASSWORD': '098-098',
-        'HOST': '127.0.0.1',        # '127.0.0.1' for localhost through TCP.
+        'HOST': 'localhost',        # '127.0.0.1' for localhost through TCP.
         'PORT': '',        # Set to empty string for default.
     }
 }
@@ -91,9 +115,9 @@ STATICFILES_DIRS = (
     root('assets'),
 )
 
-TEMPLATE_DIRS = (
-    root('templates'),
-)
+# TEMPLATE_DIRS = (
+#     root('templates'),
+# )
 
 
 # .local.py overrides all the common settings.
