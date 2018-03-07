@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from todo.models import Todo
 
@@ -16,13 +16,14 @@ def index(request):
 
 
 def add_todo(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.is_ajax():
         message = request.POST['text']
-        print()
 
     Todo.objects.create(
         text = message,
         complete = False
     )
 
-    return HttpResponse('')
+    context = Todo.objects.get(text=message)
+
+    return JsonResponse({'todo': {'id': context.id, 'text': context.text}})

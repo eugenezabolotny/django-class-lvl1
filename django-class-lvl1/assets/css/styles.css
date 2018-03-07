@@ -1,5 +1,29 @@
 /*! project specific CSS goes here. */
 /* I AM WORKING */
 body {
-    background: red;
+    /*background: red;*/
+}
+
+.list-group-item.disabled {
+    background: #eee;
+}
+
+.list-group-item span{
+    margin-left: 2rem;
+}
+
+.list-group-item.disabled span{
+    text-decoration: line-through;
+}
+
+.list-group-item span::before {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f0c8';
+    margin-left: -2rem;
+}
+
+.list-group-item.disabled span::before {
+    content: '\f14a';
+    text-decoration: initial;
 }
