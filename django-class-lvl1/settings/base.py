@@ -13,7 +13,6 @@ root = lambda *x: join(abspath(PROJECT_ROOT), *x)
 
 sys.path.insert(0, root('apps'))
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'CHANGE THIS!!!'
 
@@ -83,9 +82,38 @@ DATABASES = {
         'NAME': 'django-class-lvl1',
         'USER': 'postgres',
         'PASSWORD': '098-098',
-        'HOST': 'localhost',        # '127.0.0.1' for localhost through TCP.
-        'PORT': '',        # Set to empty string for default.
+        'HOST': 'localhost',  # '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
     }
+}
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s; %(filename)s:%(lineno)d] '
+                      '%(levelname)s:%(name)s: \n\t%(message)s ',
+            'datefmt': "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
 
 # Internationalization
@@ -100,7 +128,6 @@ USE_I18N = False
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -126,7 +153,6 @@ try:
     from .local import *  # NOQA
 except ImportError:
     pass
-
 
 # importing test settings file if necessary
 if len(sys.argv) > 1 and 'test' in sys.argv[1]:
